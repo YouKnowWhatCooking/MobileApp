@@ -25,7 +25,7 @@ public class User {
     @Column(name="balance")
     private int balance;
 
-    @Column(name="last_login")
+    @Column(name="lastlogin")
     private Date lastLogin;
 
     @OneToOne
