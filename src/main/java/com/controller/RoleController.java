@@ -25,8 +25,7 @@ public class RoleController {
 
     @GetMapping("/{id}")
     public Role getRoleById(@PathVariable("id") int ID) {
-        return this.roleRepository.findById(ID)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found with id :" + ID));
+        return this.roleRepository.findById(ID);
     }
 
 
@@ -38,16 +37,14 @@ public class RoleController {
 
     @PutMapping("/{id}")
     public Role updateRole(@RequestBody Role role, @PathVariable("id") int ID){
-        Role existingRole = this.roleRepository.findById(ID)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found with id :" + ID));
+        Role existingRole = this.roleRepository.findById(ID);
         existingRole.setTitle(role.getTitle());
         return this.roleRepository.save(existingRole);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Bonus> deleteRole(@PathVariable("id") int ID) {
-        Role existingRole = this.roleRepository.findById(ID)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found with id :" + ID));
+        Role existingRole = this.roleRepository.findById(ID);
         this.roleRepository.delete(existingRole);
         return ResponseEntity.ok().build();
     }
