@@ -2,36 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfdf675a-b8fc-4767-bf41-6def5a323b4d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/config/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/config/JwtRequestFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/config/JwtTokenUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/controller/JwtAuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/payload/JwtRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/payload/JwtResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/JwtUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7704a5e-31e7-4e6b-ac00-7ff67096396c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7704a5e-31e7-4e6b-ac00-7ff67096396c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7704a5e-31e7-4e6b-ac00-7ff67096396c/storage_v2/_src_/database/survey.Wqfjyg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7704a5e-31e7-4e6b-ac00-7ff67096396c/storage_v2/_src_/database/survey.Wqfjyg/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/payload/UserPayLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/payload/UserPayLoad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/entity/PurchasedCategories.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exception/ResourceNotFoundException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/payload/UserPayLoad.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/payload/UserPayLoad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/repository/RoleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/repository/RoleRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/service/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/JwtTokenUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +62,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/RPSCourseProject-master/RPSCourseProject-master/CoursePr" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/spring-security-jwt-example-master/spring-security-jwt-example-master" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -197,7 +170,13 @@
       <workItem from="1605012662982" duration="1262000" />
       <workItem from="1605022281078" duration="1833000" />
       <workItem from="1605024187774" duration="1791000" />
-      <workItem from="1605026044323" duration="565000" />
+      <workItem from="1605026044323" duration="894000" />
+      <workItem from="1605076106712" duration="1387000" />
+      <workItem from="1605077513145" duration="1791000" />
+      <workItem from="1605079366338" duration="1511000" />
+      <workItem from="1605081435701" duration="28000" />
+      <workItem from="1605086216533" duration="773000" />
+      <workItem from="1605087012736" duration="756000" />
     </task>
     <task id="LOCAL-00001" summary="Purchased Categories">
       <created>1604303158473</created>
@@ -206,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604303158473</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="...">
+      <created>1605026858505</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605026858505</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +200,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Purchased Categories" />
-    <option name="LAST_COMMIT_MESSAGE" value="Purchased Categories" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="WindowStateProjectService">
     <state x="1032" y="177" key="#Assign_Data_Sources" timestamp="1604926187448">
@@ -253,46 +240,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1170" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603804688478" />
-    <state x="585" y="113" key="CommitChangelistDialog2" timestamp="1604303157637">
+    <state x="585" y="113" key="CommitChangelistDialog2" timestamp="1605026857487">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1604303157637" />
-    <state x="1220" y="274" key="FileChooserDialogImpl" timestamp="1605011742144">
+    <state x="585" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1605026857487" />
+    <state x="1220" y="274" key="FileChooserDialogImpl" timestamp="1605076641198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1220" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605011742144" />
-    <state width="900" height="268" key="GridCell.Tab.0.bottom" timestamp="1605026790598">
+    <state x="1220" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605076641198" />
+    <state width="900" height="109" key="GridCell.Tab.0.bottom" timestamp="1605086989230">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790598" />
-    <state width="900" height="268" key="GridCell.Tab.0.center" timestamp="1605026790598">
+    <state width="900" height="109" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989230" />
+    <state width="900" height="109" key="GridCell.Tab.0.center" timestamp="1605086989230">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790598" />
-    <state width="900" height="268" key="GridCell.Tab.0.left" timestamp="1605026790598">
+    <state width="900" height="109" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989230" />
+    <state width="900" height="109" key="GridCell.Tab.0.left" timestamp="1605086989230">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790598" />
-    <state width="900" height="268" key="GridCell.Tab.0.right" timestamp="1605026790598">
+    <state width="900" height="109" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989230" />
+    <state width="900" height="109" key="GridCell.Tab.0.right" timestamp="1605086989230">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790598" />
-    <state width="900" height="268" key="GridCell.Tab.1.bottom" timestamp="1605026790599">
+    <state width="900" height="109" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989230" />
+    <state width="900" height="109" key="GridCell.Tab.1.bottom" timestamp="1605086989231">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790599" />
-    <state width="900" height="268" key="GridCell.Tab.1.center" timestamp="1605026790599">
+    <state width="900" height="109" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989231" />
+    <state width="900" height="109" key="GridCell.Tab.1.center" timestamp="1605086989230">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790599" />
-    <state width="900" height="268" key="GridCell.Tab.1.left" timestamp="1605026790598">
+    <state width="900" height="109" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989230" />
+    <state width="900" height="109" key="GridCell.Tab.1.left" timestamp="1605086989230">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790598" />
-    <state width="900" height="268" key="GridCell.Tab.1.right" timestamp="1605026790599">
+    <state width="900" height="109" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989230" />
+    <state width="900" height="109" key="GridCell.Tab.1.right" timestamp="1605086989231">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="900" height="268" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605026790599" />
+    <state width="900" height="109" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605086989231" />
     <state width="1876" height="284" key="GridCell.Tab.2.bottom" timestamp="1605025765130">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -313,10 +300,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="200" height="441" key="SqlResolveConfigurable/0.0.1920.1040@0.0.1920.1040" timestamp="1603871537557" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1604303164607">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605026877669">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604303164607" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605026877669" />
     <state x="1156" y="160" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603871055500">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
