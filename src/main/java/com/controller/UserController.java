@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.config.JwtTokenUtil;
+import com.entity.Category;
 import com.entity.User;
 import com.exception.ResourceNotFoundException;
 import com.payload.UserPayLoad;
@@ -8,9 +9,10 @@ import com.repository.BonusRepository;
 import com.repository.RoleRepository;
 import com.repository.UserRepository;
 import com.service.UserService;
+import com.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,7 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private UserValidator userValidator;
     @Autowired
     UserService userService;
 
@@ -39,34 +41,45 @@ public class UserController {
 
 
     @GetMapping("/lk")
-    public User getUser(HttpServletRequest request) {
-        String token = request.getHeader("Authorization");
-        String currentUsername = jwtTokenUtil.getUsernameFromToken(token);
-        return this.userRepository.findByUsername(currentUsername);
+    public ResponseEntity<?> getUser(HttpServletRequest request) {
+        String currentUsername = request.getRemoteUser();
+        User user = userRepository.findByUsername(currentUsername);
+        return ResponseEntity.ok(user);
     }
 
 
    @PostMapping("/registration")
-    public User register(@RequestBody UserPayLoad userPayLoad){
-        User user = new User(userPayLoad.getUsername(), userPayLoad.getPassword(), userPayLoad.getName(), 0, userPayLoad.getLastLogin(), bonusRepository.findById(userPayLoad.getBonus_id()), roleRepository.findById(userPayLoad.getRole_id()));
+    public ResponseEntity<?> register(@RequestBody UserPayLoad userPayLoad, Errors errors){
+        userValidator.validate(userPayLoad, errors);
+        if(errors.hasErrors()){
+            return ResponseEntity.badRequest().body("Duplicate");
+        }
+        User user = new User(userPayLoad.getUsername(),
+                userPayLoad.getPassword(),
+                userPayLoad.getName(),
+                0,
+                (long) 1,
+                bonusRepository.findById(2));
         userService.save(user);
-        return this.userRepository.findByUsername(user.getUsername());
+        return ResponseEntity.ok("Success");
     }
 
-   @PutMapping("/{id}")
-    public User modifyProfile(@RequestBody User user, @PathVariable("id") int ID){
-       User existingUser = this.userRepository.findById(ID)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + ID));
-        existingUser.setName(user.getName());
-        return this.userRepository.save(existingUser);
+
+   @PutMapping
+    public ResponseEntity<?> modifyProfile(@RequestBody User user, HttpServletRequest request){
+       User existingUser = userRepository.findByUsername(request.getRemoteUser());
+       existingUser.setName(user.getName());
+       userRepository.save(existingUser);
+       return ResponseEntity.ok(existingUser);
     }
+
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable("id") int ID) {
+    public ResponseEntity<?> deleteUser(@PathVariable("id") int ID) {
         User existingUser = this.userRepository.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + ID));
         this.userRepository.delete(existingUser);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
 }

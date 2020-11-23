@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.17">
     <root id="1">
       <ServerVersion>10.4</ServerVersion>
-      <StartupTime>1604917096</StartupTime>
+      <StartupTime>1605952208</StartupTime>
     </root>
     <database id="2" parent="1" name="decimal">
       <ObjectId>16475</ObjectId>
@@ -17,7 +17,7 @@
     <database id="4" parent="1" name="survey">
       <ObjectId>16393</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>654</IntrospectionStateNumber>
+      <IntrospectionStateNumber>714</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="5" parent="1" name="test">
@@ -64,7 +64,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>352</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>655</IntrospectionStateNumber>
+      <IntrospectionStateNumber>715</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="15" parent="4" name="btree">
@@ -159,7 +159,7 @@
     <table id="28" parent="14" name="users">
       <ObjectId>16407</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>624</StateNumber>
+      <StateNumber>708</StateNumber>
     </table>
     <column id="29" parent="23" name="id">
       <Position>1</Position>
@@ -403,10 +403,10 @@
       <StateNumber>560</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="64" parent="28" name="role_id">
+    <column id="64" parent="28" name="role">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>560</StateNumber>
+      <StateNumber>712</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="65" parent="28" name="balance">
@@ -421,10 +421,10 @@
       <StateNumber>560</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <column id="67" parent="28" name="bonus_id">
+    <column id="67" parent="28" name="bonus">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>560</StateNumber>
+      <StateNumber>713</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="68" parent="28" name="last_login">
@@ -433,46 +433,58 @@
       <StateNumber>624</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="69" parent="28" name="users_pkey">
+    <column id="69" parent="28" name="lastbonusgain">
+      <Position>13</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>707</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="70" parent="28" name="last_bonus_gain">
+      <Position>14</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>708</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="71" parent="28" name="users_pkey">
       <ObjectId>16413</ObjectId>
       <StateNumber>560</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="70" parent="28" name="users_login_key">
+    <index id="72" parent="28" name="users_login_key">
       <ObjectId>16415</ObjectId>
       <StateNumber>560</StateNumber>
       <ColNames>username</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="71" parent="28" name="users_pkey">
+    <key id="73" parent="28" name="users_pkey">
       <ObjectId>16414</ObjectId>
       <StateNumber>560</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
     </key>
-    <key id="72" parent="28" name="users_login_key">
+    <key id="74" parent="28" name="users_login_key">
       <ObjectId>16416</ObjectId>
       <StateNumber>560</StateNumber>
       <ColNames>username</ColNames>
       <UnderlyingIndexName>users_login_key</UnderlyingIndexName>
     </key>
-    <foreign-key id="73" parent="28" name="users_role_id_fkey">
+    <foreign-key id="75" parent="28" name="users_role_id_fkey">
       <ObjectId>16417</ObjectId>
       <StateNumber>560</StateNumber>
-      <ColNames>role_id</ColNames>
+      <ColNames>role</ColNames>
       <RefTableId>16397</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>role</RefTableName>
       <RefKeyName>role_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="74" parent="28" name="users_bonus_id_fkey">
+    <foreign-key id="76" parent="28" name="users_bonus_id_fkey">
       <ObjectId>16422</ObjectId>
       <StateNumber>560</StateNumber>
-      <ColNames>bonus_id</ColNames>
+      <ColNames>bonus</ColNames>
       <RefTableId>16402</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>bonus</RefTableName>

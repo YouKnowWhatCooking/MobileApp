@@ -1,10 +1,13 @@
 package com.payload;
 
 public class QuestionPayLoad {
+    private int id;
     private String text;
     private int categoryID;
 
-    public QuestionPayLoad(String text, int categoryID) {
+
+    public QuestionPayLoad(int id, String text, int categoryID) {
+        this.id = id;
         this.text = text;
         this.categoryID = categoryID;
     }
@@ -23,5 +26,13 @@ public class QuestionPayLoad {
 
     public void setCategoryID(int categoryID) {
         this.categoryID = categoryID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/bonuses")
@@ -25,48 +24,64 @@ public class BonusController {
 
 
     @GetMapping
-    public List<Bonus> getAllBonuses() {
-        return this.bonusRepository.findAll();
+    public ResponseEntity<?> getAllBonuses() {
+        List<Bonus> bonusList = bonusRepository.findAll();
+        return ResponseEntity.ok(bonusList);
     }
 
 
-    @GetMapping("/{username}")
-    public Bonus gainBonus(@PathVariable("username") String username) {
-        User user  = userRepository.findByUsername(username);
-        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
-        Date currentDate = new Date();
-        Date lastLogin = user.getLastLogin();
-        System.out.println(format.format(currentDate));
-        System.out.println(format.format(lastLogin));
-        if (!format.format(currentDate).equals(format.format(lastLogin))) {
-            user.setLastLogin(lastLogin);
+    @GetMapping("/user")
+    public ResponseEntity<?> getUserBonuses(HttpServletRequest request) {
+        User user  = userRepository.findByUsername(request.getRemoteUser());
+        int userBonuses = user.getBalance();
+        return ResponseEntity.ok(userBonuses);
+    }
+
+    @GetMapping("/bonus")
+    public ResponseEntity<?> gainBonus(HttpServletRequest request) {
+        User user  = userRepository.findByUsername(request.getRemoteUser());
+        long lastLogin = user.getLastBonusGain();
+        long currentDate = System.currentTimeMillis();
+        if ((currentDate - lastLogin) > 86400000) {
+            user.setLastBonusGain(lastLogin);
+            int gainingBonus = bonusRepository.findById(user.getBonus().getId()).getBonusValue();
             user.setBalance(user.getBalance() + bonusRepository.findById(user.getBonus().getId()).getBonusValue());
             user.setBonus(bonusRepository.findById((user.getBonus().getId()+1)%7));
-
-            userRepository.save(user);
-            return this.bonusRepository.findById(user.getBonus().getId());
-        }
-        else return null;
+            user.setLastBonusGain(System.currentTimeMillis());
+            this.userRepository.save(user);
+            return ResponseEntity.ok("Вам зачислен бонус - " + gainingBonus  + " монет");
+        } else if ((currentDate - lastLogin) > 86400000 * 2) {
+            user.setLastBonusGain(lastLogin);
+            int gainingBonus = bonusRepository.findById(user.getBonus().getId()).getBonusValue();
+            user.setBalance(user.getBalance() + bonusRepository.findById(user.getBonus().getId()).getBonusValue());
+            user.setBonus(bonusRepository.findById(1));
+            user.setLastBonusGain(System.currentTimeMillis());
+            this.userRepository.save(user);
+            return ResponseEntity.ok("Вам зачислен бонус - " + gainingBonus  + " монет");
+        } else return ResponseEntity.ok("No bonus");
     }
 
 
     @PostMapping
-    public Bonus createBonus(@RequestBody Bonus bonus){
-        Bonus newBonus = new Bonus(bonus.getBonusValue());
-        return this.bonusRepository.save(newBonus);
+    public ResponseEntity<?> createBonus(@RequestBody Bonus bonus){
+        Bonus newBonus = new Bonus();
+        newBonus.setBonusValue(bonus.getBonusValue());
+        this.bonusRepository.save(newBonus);
+        return ResponseEntity.ok("Success");
     }
 
-    @PutMapping("/{id}")
-    public Bonus updateBonus(@RequestBody Bonus bonus, @PathVariable("id") int ID){
-        Bonus existingBonus = this.bonusRepository.findById(ID);
+    @PutMapping
+    public ResponseEntity<?> updateBonus(@RequestBody Bonus bonus){
+        Bonus existingBonus = bonusRepository.findById(bonus.getId());
         existingBonus.setBonusValue(bonus.getBonusValue());
-        return this.bonusRepository.save(existingBonus);
+        this.bonusRepository.save(existingBonus);
+        return ResponseEntity.ok("Success");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Bonus> deleteBonus(@PathVariable("id") int ID) {
-        Bonus existingBonus = this.bonusRepository.findById(ID);
-        this.bonusRepository.delete(existingBonus);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> deleteBonus(@PathVariable("id") int ID) {
+        Bonus existingBonus = bonusRepository.findById(ID);
+        bonusRepository.delete(existingBonus);
+        return ResponseEntity.ok("Success");
     }
 }

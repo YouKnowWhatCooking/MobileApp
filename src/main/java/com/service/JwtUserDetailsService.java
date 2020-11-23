@@ -1,5 +1,6 @@
 package com.service;
 
+import com.entity.Role;
 import com.entity.User;
 import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,6 @@ public class JwtUserDetailsService implements org.springframework.security.core.
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(login);
-
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getTitle()));
-
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
     }
 }

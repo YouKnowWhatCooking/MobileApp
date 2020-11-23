@@ -1,7 +1,9 @@
 package com.controller;
 
 import com.entity.Bonus;
+import com.entity.Category;
 import com.entity.PurchasedCategory;
+import com.entity.User;
 import com.payload.PurchasedCategoryPayLoad;
 import com.repository.CategoryRepository;
 import com.repository.PurchasedCategoriesRepository;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -33,13 +36,18 @@ public class PurchasedCategoryController {
 
 
     @PostMapping
-    public PurchasedCategory purchaseCategory(@RequestBody PurchasedCategoryPayLoad purchasedCategoryPayLoad){
+    public ResponseEntity<?> purchaseCategory(@RequestBody PurchasedCategoryPayLoad purchasedCategoryPayLoad, HttpServletRequest request){
         PurchasedCategory purchasedCategory = new PurchasedCategory();
-        purchasedCategory.setUser(userRepository.findByUsername(purchasedCategory.getUser().getUsername()));
-        purchasedCategory.setCategory(categoryRepository.findById(purchasedCategoryPayLoad.getCategoryID()));
-        if(userRepository.findByUsername(purchasedCategoryPayLoad.getUsername()).getBalance() > categoryRepository.findById(purchasedCategory.getId()).getPrice()) {
-            return purchasedCategoriesRepository.save(purchasedCategory);
-        } else return null;
+        User user = userRepository.findByUsername(request.getRemoteUser());
+        Category category = categoryRepository.findById(purchasedCategoryPayLoad.getCategoryID());
+        purchasedCategory.setUser(user);
+        purchasedCategory.setCategory(category);
+        if(user.getBalance() >= category.getPrice()) {
+            user.setBalance(user.getBalance() - category.getPrice());
+            this.purchasedCategoriesRepository.save(purchasedCategory);
+            this.userRepository.save(user);
+            return ResponseEntity.ok("Success");
+        } else return ResponseEntity.badRequest().body("Not enough balance");
     }
 
     @DeleteMapping("/{id}")

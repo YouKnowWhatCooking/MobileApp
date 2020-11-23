@@ -1,14 +1,14 @@
 package com.payload;
 
 public class CategoryPayLoad {
+    private int id;
     private String title;
-    private String username;
     private int price;
     private boolean purchaseRequirement;
 
-    public CategoryPayLoad(String title, String username, int price, boolean purchaseRequirement) {
+    public CategoryPayLoad(int id, String title, int price, boolean purchaseRequirement) {
+        this.id = id;
         this.title = title;
-        this.username = username;
         this.price = price;
         this.purchaseRequirement = purchaseRequirement;
     }
@@ -21,13 +21,6 @@ public class CategoryPayLoad {
         this.title = title;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUserID(String username) {
-        this.username = username;
-    }
 
     public int getPrice() {
         return price;
@@ -43,5 +36,13 @@ public class CategoryPayLoad {
 
     public void setPurchaseRequirement(boolean purchaseRequirement) {
         this.purchaseRequirement = purchaseRequirement;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

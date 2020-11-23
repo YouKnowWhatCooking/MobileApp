@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,8 +18,6 @@ import java.util.Random;
 @RequestMapping("api/questions")
 public class QuestionController {
 
-
-    private EntityManager entityManager;
     @Autowired
     private QuestionRepository questionRepository;
     @Autowired
@@ -29,13 +25,14 @@ public class QuestionController {
 
 
     @GetMapping
-    public List<Question> getAllQuestions() {
-        return this.questionRepository.findAll();
+    public ResponseEntity<?> getAllQuestions() {
+        List<Question> listQuestion = questionRepository.findAll();
+        return ResponseEntity.ok(listQuestion);
     }
 
 
     @GetMapping("/{id}/{count}")
-    public List<Question> getQuestionByCategory(@PathVariable("id") int ID, @PathVariable("count") int count) {
+    public ResponseEntity<?> getQuestionByCategory(@PathVariable("id") int ID, @PathVariable("count") int count) {
         Random random = new Random();
         List<Question> randomQuestions = new ArrayList<>();
         List<Question> list = questionRepository.findByCategory(categoryRepository.findById(ID));
@@ -44,30 +41,32 @@ public class QuestionController {
             randomQuestions.add(list.get(randomIndex));
             list.remove(randomIndex);
         }
-        return randomQuestions;
+        return ResponseEntity.ok(randomQuestions);
     }
 
 
     @PostMapping
-    public Question createQuestion(@RequestBody QuestionPayLoad questionPayLoad){
+    public ResponseEntity<?> createQuestion(@RequestBody QuestionPayLoad questionPayLoad){
         Question newQuestion = new Question(questionPayLoad.getText(), categoryRepository.findById(questionPayLoad.getCategoryID()));
-        return this.questionRepository.save(newQuestion);
+        this.questionRepository.save(newQuestion);
+        return ResponseEntity.ok("Success");
     }
 
-    @PutMapping("/{id}")
-    public Question updateQuestion(@RequestBody QuestionPayLoad questionPayLoad, @PathVariable("id") int ID){
-        Question existingQuestion = this.questionRepository.findById(ID)
-                .orElseThrow(() -> new ResourceNotFoundException("Question not found with id :" + ID));
+    @PutMapping()
+    public ResponseEntity<?> updateQuestion(@RequestBody QuestionPayLoad questionPayLoad){
+        Question existingQuestion = this.questionRepository.findById(questionPayLoad.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Question not found with id :" + questionPayLoad.getId()));
         existingQuestion.setText(questionPayLoad.getText());
         existingQuestion.setCategory(categoryRepository.findById(questionPayLoad.getCategoryID()));
-        return this.questionRepository.save(existingQuestion);
+        this.questionRepository.save(existingQuestion);
+        return ResponseEntity.ok("Success");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Question> deleteQuestion(@PathVariable("id") int ID) {
+    public ResponseEntity<?> deleteQuestion(@PathVariable("id") int ID) {
         Question existingQuestion = this.questionRepository.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Question not found with id :" + ID));
         this.questionRepository.delete(existingQuestion);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 }

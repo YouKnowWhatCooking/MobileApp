@@ -1,19 +1,24 @@
 package com.entity;
 
 
+import com.sun.istack.NotNull;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name="username")
+    @NotNull()
     private String username;
 
     @Column(name="password")
@@ -25,29 +30,31 @@ public class User {
     @Column(name="balance")
     private int balance;
 
-    @Column(name="lastlogin")
-    private Date lastLogin;
+    @Column(name="lastBonusGain")
+    private Long lastBonusGain;
 
     @OneToOne
     private Bonus bonus;
 
-    @OneToOne
-    private Role role;
-
-    public User(String username, String password, String name, int balance, Date lastLogin, Bonus bonus, Role role) {
-        super();
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.balance = balance;
-        this.lastLogin = lastLogin;
-        this.bonus = bonus;
-        this.role = role;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> role;
 
     public User() {
     }
 
+    public User(String username, String password, String name, int balance, Long lastBonusGain, Bonus bonus) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.balance = balance;
+        this.lastBonusGain = lastBonusGain;
+        this.bonus = bonus;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRole();
+    }
 
     public int getId() {
         return id;
@@ -59,6 +66,26 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 
     public void setUsername(String username) {
@@ -89,12 +116,12 @@ public class User {
         this.balance = balance;
     }
 
-    public Date getLastLogin() {
-        return lastLogin;
+    public Long getLastBonusGain() {
+        return lastBonusGain;
     }
 
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setLastBonusGain(Long lastBonusGain) {
+        this.lastBonusGain = lastBonusGain;
     }
 
     public Bonus getBonus() {
@@ -105,11 +132,11 @@ public class User {
         this.bonus = bonus;
     }
 
-    public Role getRole() {
+    public Set<Role> getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(Set<Role> role) {
         this.role = role;
     }
 }

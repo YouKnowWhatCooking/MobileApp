@@ -18,34 +18,38 @@ public class RoleController {
     private RoleRepository roleRepository;
 
     @GetMapping
-    public List<Role> getAllRoles() {
-        return this.roleRepository.findAll();
+    public ResponseEntity<?> getAllRoles() {
+        List<Role> roleList = roleRepository.findAll();
+        return ResponseEntity.ok(roleList);
     }
 
 
     @GetMapping("/{id}")
-    public Role getRoleById(@PathVariable("id") int ID) {
-        return this.roleRepository.findById(ID);
+    public ResponseEntity<?> getRoleById(@PathVariable("id") int ID) {
+        Role role = roleRepository.findById(ID);
+        return ResponseEntity.ok(role);
     }
 
 
     @PostMapping
-    public Role createRole(@RequestBody Role role){
+    public ResponseEntity<?> createRole(@RequestBody Role role){
         Role newRole = new Role(role.getTitle());
-        return this.roleRepository.save(newRole);
+        this.roleRepository.save(newRole);
+        return ResponseEntity.ok("Success");
     }
 
-    @PutMapping("/{id}")
-    public Role updateRole(@RequestBody Role role, @PathVariable("id") int ID){
-        Role existingRole = this.roleRepository.findById(ID);
+    @PutMapping
+    public ResponseEntity<?> updateRole(@RequestBody Role role){
+        Role existingRole = this.roleRepository.findById(role.getId());
         existingRole.setTitle(role.getTitle());
-        return this.roleRepository.save(existingRole);
+        this.roleRepository.save(existingRole);
+        return ResponseEntity.ok("Success");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Bonus> deleteRole(@PathVariable("id") int ID) {
+    public ResponseEntity<?> deleteRole(@PathVariable("id") int ID) {
         Role existingRole = this.roleRepository.findById(ID);
         this.roleRepository.delete(existingRole);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 }
