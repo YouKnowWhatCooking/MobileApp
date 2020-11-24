@@ -1,7 +1,5 @@
 package com.controller;
 
-import com.config.JwtTokenUtil;
-import com.entity.Category;
 import com.entity.User;
 import com.exception.ResourceNotFoundException;
 import com.payload.UserPayLoad;
@@ -27,8 +25,6 @@ public class UserController {
     @Autowired
     private BonusRepository bonusRepository;
     @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
     private UserValidator userValidator;
     @Autowired
     UserService userService;
@@ -52,7 +48,7 @@ public class UserController {
     public ResponseEntity<?> register(@RequestBody UserPayLoad userPayLoad, Errors errors){
         userValidator.validate(userPayLoad, errors);
         if(errors.hasErrors()){
-            return ResponseEntity.badRequest().body("Duplicate");
+            return ResponseEntity.badRequest().build();
         }
         User user = new User(userPayLoad.getUsername(),
                 userPayLoad.getPassword(),
@@ -61,7 +57,7 @@ public class UserController {
                 (long) 1,
                 bonusRepository.findById(2));
         userService.save(user);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
 
@@ -79,7 +75,7 @@ public class UserController {
         User existingUser = this.userRepository.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + ID));
         this.userRepository.delete(existingUser);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
 }

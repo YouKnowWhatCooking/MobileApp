@@ -49,7 +49,7 @@ public class QuestionController {
     public ResponseEntity<?> createQuestion(@RequestBody QuestionPayLoad questionPayLoad){
         Question newQuestion = new Question(questionPayLoad.getText(), categoryRepository.findById(questionPayLoad.getCategoryID()));
         this.questionRepository.save(newQuestion);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping()
@@ -59,7 +59,7 @@ public class QuestionController {
         existingQuestion.setText(questionPayLoad.getText());
         existingQuestion.setCategory(categoryRepository.findById(questionPayLoad.getCategoryID()));
         this.questionRepository.save(existingQuestion);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
@@ -67,6 +67,6 @@ public class QuestionController {
         Question existingQuestion = this.questionRepository.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Question not found with id :" + ID));
         this.questionRepository.delete(existingQuestion);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 }

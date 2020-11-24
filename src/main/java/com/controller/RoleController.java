@@ -1,8 +1,6 @@
 package com.controller;
 
-import com.entity.Bonus;
 import com.entity.Role;
-import com.exception.ResourceNotFoundException;
 import com.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +33,7 @@ public class RoleController {
     public ResponseEntity<?> createRole(@RequestBody Role role){
         Role newRole = new Role(role.getTitle());
         this.roleRepository.save(newRole);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping
@@ -43,13 +41,13 @@ public class RoleController {
         Role existingRole = this.roleRepository.findById(role.getId());
         existingRole.setTitle(role.getTitle());
         this.roleRepository.save(existingRole);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRole(@PathVariable("id") int ID) {
         Role existingRole = this.roleRepository.findById(ID);
         this.roleRepository.delete(existingRole);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 }

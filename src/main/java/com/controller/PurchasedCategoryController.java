@@ -46,8 +46,8 @@ public class PurchasedCategoryController {
             user.setBalance(user.getBalance() - category.getPrice());
             this.purchasedCategoriesRepository.save(purchasedCategory);
             this.userRepository.save(user);
-            return ResponseEntity.ok("Success");
-        } else return ResponseEntity.badRequest().body("Not enough balance");
+            return ResponseEntity.ok().build();
+        } else return ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/{id}")

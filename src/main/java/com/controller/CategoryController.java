@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.entity.Category;
-import com.entity.Role;
 import com.entity.User;
 import com.payload.CategoryPayLoad;
 import com.repository.CategoryRepository;
@@ -66,12 +65,20 @@ public class CategoryController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<?> createCategory(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request){
+    @PostMapping("/admin")
+    public ResponseEntity<?> createCategoryAdmin(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request){
         User user  = userRepository.findByUsername(request.getRemoteUser());
         Category newCategory = new Category(categoryPayLoad.getTitle(), categoryPayLoad.getPrice(), categoryPayLoad.isPurchaseRequirement(), user);
         this.categoryRepository.save(newCategory);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<?> createCategoryUser(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request){
+        User user  = userRepository.findByUsername(request.getRemoteUser());
+        Category newCategory = new Category(categoryPayLoad.getTitle(), 0, false, user);
+        this.categoryRepository.save(newCategory);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping
@@ -81,14 +88,14 @@ public class CategoryController {
         existingCategory.setPrice(categoryPayLoad.getPrice());
         existingCategory.setPurchaseRequirment(categoryPayLoad.isPurchaseRequirement());
         this.categoryRepository.save(existingCategory);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable("id") int ID) {
         Category existingCategory = this.categoryRepository.findById(ID);
         this.categoryRepository.delete(existingCategory);
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok().build();
     }
 
 }
