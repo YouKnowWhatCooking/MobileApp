@@ -4,6 +4,7 @@ import com.entity.Bonus;
 import com.entity.Category;
 import com.entity.PurchasedCategory;
 import com.entity.User;
+import com.exception.ResourceNotFoundException;
 import com.payload.PurchasedCategoryPayLoad;
 import com.repository.CategoryRepository;
 import com.repository.PurchasedCategoriesRepository;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/purchases")
+@RequestMapping("/api/purchases")
 public class PurchasedCategoryController {
 
     @Autowired
@@ -38,8 +39,11 @@ public class PurchasedCategoryController {
     @PostMapping
     public ResponseEntity<?> purchaseCategory(@RequestBody PurchasedCategoryPayLoad purchasedCategoryPayLoad, HttpServletRequest request){
         PurchasedCategory purchasedCategory = new PurchasedCategory();
-        User user = userRepository.findByUsername(request.getRemoteUser());
-        Category category = categoryRepository.findById(purchasedCategoryPayLoad.getCategoryID());
+        User user = userRepository.findByUsername(request.getRemoteUser())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Category category = categoryRepository.findById(purchasedCategoryPayLoad.getCategoryID())
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+
         purchasedCategory.setUser(user);
         purchasedCategory.setCategory(category);
         if(user.getBalance() >= category.getPrice()) {
@@ -52,7 +56,8 @@ public class PurchasedCategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Bonus> deletePurchasedCategory(@PathVariable("id") int ID) {
-        PurchasedCategory existingPurchasedCategory = this.purchasedCategoriesRepository.findById(ID);
+        PurchasedCategory existingPurchasedCategory = this.purchasedCategoriesRepository.findById(ID)
+                .orElseThrow(() -> new ResourceNotFoundException("PurchasedCategory not found"));
         this.purchasedCategoriesRepository.delete(existingPurchasedCategory);
         return ResponseEntity.ok().build();
     }

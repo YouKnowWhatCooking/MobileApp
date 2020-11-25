@@ -2,6 +2,7 @@ package com.service;
 
 import com.entity.Role;
 import com.entity.User;
+import com.exception.ResourceNotFoundException;
 import com.repository.RoleRepository;
 import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,16 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void save(User user){
-        user.setRole(Collections.singleton(roleRepository.findById(1)));
+        Role role = roleRepository.findById(1)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+        user.setRole(Collections.singleton(role));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Override
     public User findByUserName(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 }

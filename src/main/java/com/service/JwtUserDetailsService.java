@@ -1,7 +1,9 @@
 package com.service;
 
+import com.entity.Category;
 import com.entity.Role;
 import com.entity.User;
+import com.exception.ResourceNotFoundException;
 import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +21,8 @@ public class JwtUserDetailsService implements org.springframework.security.core.
 
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(login);
+        User user = userRepository.findByUsername(login)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
     }
 }

@@ -3,6 +3,7 @@ package com.controller;
 
 import com.entity.Bonus;
 import com.entity.User;
+import com.exception.ResourceNotFoundException;
 import com.payload.Response;
 import com.repository.BonusRepository;
 import com.repository.UserRepository;
@@ -33,30 +34,40 @@ public class BonusController {
 
     @GetMapping("/user")
     public ResponseEntity<?> getUserBonuses(HttpServletRequest request) {
-        User user  = userRepository.findByUsername(request.getRemoteUser());
+        User user  = userRepository.findByUsername(request.getRemoteUser())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         int userBonuses = user.getBalance();
         return ResponseEntity.ok(userBonuses);
     }
 
     @GetMapping("/bonus")
     public ResponseEntity<Response> gainBonus(HttpServletRequest request) {
-        User user  = userRepository.findByUsername(request.getRemoteUser());
+        User user  = userRepository.findByUsername(request.getRemoteUser())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         long lastLogin = user.getLastBonusGain();
         long currentDate = System.currentTimeMillis();
         if ((currentDate - lastLogin) > 86400000) {
             user.setLastBonusGain(lastLogin);
-            int gainingBonus = bonusRepository.findById(user.getBonus().getId()).getBonusValue();
-            user.setBalance(user.getBalance() + bonusRepository.findById(user.getBonus().getId()).getBonusValue());
-            user.setBonus(bonusRepository.findById((user.getBonus().getId()+1)%7));
+            Bonus foundBonus =  bonusRepository.findById(user.getBonus().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
+            int gainingBonus = foundBonus.getBonusValue();
+            user.setBalance(user.getBalance() + foundBonus.getBonusValue());
+            Bonus nextBonus = bonusRepository.findById((user.getBonus().getId()+1)%7)
+                    .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
+            user.setBonus(nextBonus);
             user.setLastBonusGain(System.currentTimeMillis());
             this.userRepository.save(user);
             Response response = new Response("Вам зачислен бонус - " + gainingBonus  + " монет");
             return ResponseEntity.ok(response);
         } else if ((currentDate - lastLogin) > 86400000 * 2) {
             user.setLastBonusGain(lastLogin);
-            int gainingBonus = bonusRepository.findById(user.getBonus().getId()).getBonusValue();
-            user.setBalance(user.getBalance() + bonusRepository.findById(user.getBonus().getId()).getBonusValue());
-            user.setBonus(bonusRepository.findById(1));
+            Bonus foundBonus =  bonusRepository.findById(user.getBonus().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
+            int gainingBonus = foundBonus.getBonusValue();
+            user.setBalance(user.getBalance() + foundBonus.getBonusValue());
+            Bonus nextBonus = bonusRepository.findById((user.getBonus().getId()+1)%7)
+                    .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
+            user.setBonus(nextBonus);
             user.setLastBonusGain(System.currentTimeMillis());
             this.userRepository.save(user);
             Response response = new Response("Вам зачислен бонус - " + gainingBonus  + " монет");
@@ -78,7 +89,8 @@ public class BonusController {
 
     @PutMapping
     public ResponseEntity<?> updateBonus(@RequestBody Bonus bonus){
-        Bonus existingBonus = bonusRepository.findById(bonus.getId());
+        Bonus existingBonus = bonusRepository.findById(bonus.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
         existingBonus.setBonusValue(bonus.getBonusValue());
         this.bonusRepository.save(existingBonus);
         return ResponseEntity.ok().build();
@@ -86,7 +98,8 @@ public class BonusController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBonus(@PathVariable("id") int ID) {
-        Bonus existingBonus = bonusRepository.findById(ID);
+        Bonus existingBonus = bonusRepository.findById(ID)
+                .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
         bonusRepository.delete(existingBonus);
         return ResponseEntity.ok().build();
     }

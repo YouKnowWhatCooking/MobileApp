@@ -1,6 +1,7 @@
 package com.controller;
 
 
+import com.entity.Category;
 import com.entity.Question;
 import com.exception.ResourceNotFoundException;
 import com.payload.QuestionPayLoad;
@@ -35,7 +36,9 @@ public class QuestionController {
     public ResponseEntity<?> getQuestionByCategory(@PathVariable("id") int ID, @PathVariable("count") int count) {
         Random random = new Random();
         List<Question> randomQuestions = new ArrayList<>();
-        List<Question> list = questionRepository.findByCategory(categoryRepository.findById(ID));
+        Category category = categoryRepository.findById(ID)
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+        List<Question> list = questionRepository.findByCategory(category);
         for (int i = 0; i < count; i++){
             int randomIndex = random.nextInt(list.size());
             randomQuestions.add(list.get(randomIndex));
@@ -47,7 +50,9 @@ public class QuestionController {
 
     @PostMapping
     public ResponseEntity<?> createQuestion(@RequestBody QuestionPayLoad questionPayLoad){
-        Question newQuestion = new Question(questionPayLoad.getText(), categoryRepository.findById(questionPayLoad.getCategoryID()));
+        Category category = categoryRepository.findById(questionPayLoad.getCategoryID())
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+        Question newQuestion = new Question(questionPayLoad.getText(), category);
         this.questionRepository.save(newQuestion);
         return ResponseEntity.ok().build();
     }
@@ -56,8 +61,10 @@ public class QuestionController {
     public ResponseEntity<?> updateQuestion(@RequestBody QuestionPayLoad questionPayLoad){
         Question existingQuestion = this.questionRepository.findById(questionPayLoad.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Question not found with id :" + questionPayLoad.getId()));
+        Category category = categoryRepository.findById(questionPayLoad.getCategoryID())
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         existingQuestion.setText(questionPayLoad.getText());
-        existingQuestion.setCategory(categoryRepository.findById(questionPayLoad.getCategoryID()));
+        existingQuestion.setCategory(category);
         this.questionRepository.save(existingQuestion);
         return ResponseEntity.ok().build();
     }

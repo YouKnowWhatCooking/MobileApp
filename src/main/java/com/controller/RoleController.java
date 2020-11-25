@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.entity.Role;
+import com.exception.ResourceNotFoundException;
 import com.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,9 @@ public class RoleController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getRoleById(@PathVariable("id") int ID) {
-        Role role = roleRepository.findById(ID);
+        Role role = roleRepository.findById(ID)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+        System.out.println(role);
         return ResponseEntity.ok(role);
     }
 
@@ -38,7 +41,8 @@ public class RoleController {
 
     @PutMapping
     public ResponseEntity<?> updateRole(@RequestBody Role role){
-        Role existingRole = this.roleRepository.findById(role.getId());
+        Role existingRole = this.roleRepository.findById(role.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
         existingRole.setTitle(role.getTitle());
         this.roleRepository.save(existingRole);
         return ResponseEntity.ok().build();
@@ -46,7 +50,8 @@ public class RoleController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRole(@PathVariable("id") int ID) {
-        Role existingRole = this.roleRepository.findById(ID);
+        Role existingRole = this.roleRepository.findById(ID)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
         this.roleRepository.delete(existingRole);
         return ResponseEntity.ok().build();
     }
