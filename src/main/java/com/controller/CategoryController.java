@@ -48,7 +48,7 @@ public class CategoryController {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         List<PurchasedCategory> purchasedCategoryList = purchasedCategoriesRepository.findByUser(user);
         List<Category> categoryList = new ArrayList<>();
-        for (PurchasedCategory purchasedCategory: purchasedCategoryList){
+        for (PurchasedCategory purchasedCategory : purchasedCategoryList) {
             categoryList.add(purchasedCategory.getCategory());
         }
         return ResponseEntity.ok(categoryList);
@@ -63,15 +63,15 @@ public class CategoryController {
         List<Category> categoryList = categoryRepository.findAll();
         List<Category> resultList = new ArrayList<>();
         List<Category> categoryList1 = new ArrayList<>();
-        for (PurchasedCategory purchasedCategory: purchasedCategoryList){
+        for (PurchasedCategory purchasedCategory : purchasedCategoryList) {
             categoryList1.add(purchasedCategory.getCategory());
         }
 
-        for (Category category: categoryList){
-               if(!categoryList1.contains(category) && category.isPurchaseRequirment()){
-                   resultList.add(category);
-               }
+        for (Category category : categoryList) {
+            if (!categoryList1.contains(category) && category.isPurchaseRequirment()) {
+                resultList.add(category);
             }
+        }
         return ResponseEntity.ok(resultList);
     }
 
@@ -88,8 +88,8 @@ public class CategoryController {
         roles.add(role1);
         roles.add(role2);
 
-        for (Category category: categoryList) {
-            if(category.getUser().getRole().equals(roles) && !category.isPurchaseRequirment()){
+        for (Category category : categoryList) {
+            if (category.getUser().getRole().equals(roles) && !category.isPurchaseRequirment()) {
                 resultList.add(category);
             }
         }
@@ -109,8 +109,8 @@ public class CategoryController {
         Set<Role> roles = new HashSet<>();
         roles.add(role1);
         roles.add(role2);
-        for (Category category: categoryList) {
-            if(category.getUser().getRole().equals(roles)){
+        for (Category category : categoryList) {
+            if (category.getUser().getRole().equals(roles)) {
                 resultList.add(category);
             }
         }
@@ -126,8 +126,8 @@ public class CategoryController {
 
 
     @PostMapping("/admin")
-    public ResponseEntity<?> createCategoryAdmin(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request){
-        User user  = userRepository.findByUsername(request.getRemoteUser())
+    public ResponseEntity<?> createCategoryAdmin(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request) {
+        User user = userRepository.findByUsername(request.getRemoteUser())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         Category newCategory = new Category(categoryPayLoad.getTitle(), categoryPayLoad.getPrice(), categoryPayLoad.isPurchaseRequirement(), user);
         this.categoryRepository.save(newCategory);
@@ -135,8 +135,8 @@ public class CategoryController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<?> createCategoryUser(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request){
-        User user  = userRepository.findByUsername(request.getRemoteUser())
+    public ResponseEntity<?> createCategoryUser(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request) {
+        User user = userRepository.findByUsername(request.getRemoteUser())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         Category newCategory = new Category(categoryPayLoad.getTitle(), 0, categoryPayLoad.isPurchaseRequirement(), user);
         this.categoryRepository.save(newCategory);
@@ -144,7 +144,7 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateCategory(@RequestBody CategoryPayLoad categoryPayLoad){
+    public ResponseEntity<?> updateCategory(@RequestBody CategoryPayLoad categoryPayLoad) {
         Category existingCategory = this.categoryRepository.findById(categoryPayLoad.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         existingCategory.setTitle(categoryPayLoad.getTitle());

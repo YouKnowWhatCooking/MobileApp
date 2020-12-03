@@ -31,13 +31,13 @@ public class PurchasedCategoryController {
 
 
     @GetMapping
-    public List<PurchasedCategory> getAllPurchasedCategories(){
+    public List<PurchasedCategory> getAllPurchasedCategories() {
         return this.purchasedCategoriesRepository.findAll();
     }
 
 
     @PostMapping
-    public ResponseEntity<?> purchaseCategory(@RequestBody PurchasedCategoryPayLoad purchasedCategoryPayLoad, HttpServletRequest request){
+    public ResponseEntity<?> purchaseCategory(@RequestBody PurchasedCategoryPayLoad purchasedCategoryPayLoad, HttpServletRequest request) {
         PurchasedCategory purchasedCategory = new PurchasedCategory();
         User user = userRepository.findByUsername(request.getRemoteUser())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
@@ -46,7 +46,7 @@ public class PurchasedCategoryController {
 
         purchasedCategory.setUser(user);
         purchasedCategory.setCategory(category);
-        if(user.getBalance() >= category.getPrice()) {
+        if (user.getBalance() >= category.getPrice()) {
             user.setBalance(user.getBalance() - category.getPrice());
             this.purchasedCategoriesRepository.save(purchasedCategory);
             this.userRepository.save(user);

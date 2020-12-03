@@ -51,6 +51,7 @@ public class UserController {
     public ResponseEntity<?> register(@RequestBody UserPayLoad userPayLoad, Errors errors){
         userValidator.validate(userPayLoad, errors);
         if(errors.hasErrors()){
+            System.out.println(errors);
             return ResponseEntity.badRequest().build();
         }
 
@@ -62,7 +63,6 @@ public class UserController {
                 0,
                 (long) 1,
                 bonus);
-
         userService.save(user);
         return ResponseEntity.ok().build();
     }

@@ -3,7 +3,7 @@ package com.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
 
     @Id
@@ -14,10 +14,10 @@ public class Category {
     @Column(name = "Title")
     private String title;
 
-    @Column(name="Price")
+    @Column(name = "Price")
     private int price;
 
-    @Column(name="Purchase_requirment")
+    @Column(name = "Purchase_requirment")
     private boolean purchaseRequirment;
 
     @ManyToOne

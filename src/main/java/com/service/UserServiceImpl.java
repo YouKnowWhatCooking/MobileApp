@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void save(User user){
+    public void save(User user) {
         Role role = roleRepository.findById(1)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
         user.setRole(Collections.singleton(role));

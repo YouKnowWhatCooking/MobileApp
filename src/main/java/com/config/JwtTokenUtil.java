@@ -15,15 +15,15 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil implements Serializable {
 
-    private static final long JWT_TOKEN_VALIDITY = 5*60*60;
+    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
     private final String secret = "kekw";
 
-    public String getUsernameFromToken(String token){
+    public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
-    public Date getExpirationDateFromToken(String token){
+    public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
 

@@ -39,7 +39,7 @@ public class QuestionController {
         Category category = categoryRepository.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         List<Question> list = questionRepository.findByCategory(category);
-        for (int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             int randomIndex = random.nextInt(list.size());
             randomQuestions.add(list.get(randomIndex));
             list.remove(randomIndex);
@@ -49,7 +49,7 @@ public class QuestionController {
 
 
     @PostMapping
-    public ResponseEntity<?> createQuestion(@RequestBody QuestionPayLoad questionPayLoad){
+    public ResponseEntity<?> createQuestion(@RequestBody QuestionPayLoad questionPayLoad) {
         Category category = categoryRepository.findById(questionPayLoad.getCategoryID())
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         Question newQuestion = new Question(questionPayLoad.getText(), category);
@@ -58,7 +58,7 @@ public class QuestionController {
     }
 
     @PutMapping()
-    public ResponseEntity<?> updateQuestion(@RequestBody QuestionPayLoad questionPayLoad){
+    public ResponseEntity<?> updateQuestion(@RequestBody QuestionPayLoad questionPayLoad) {
         Question existingQuestion = this.questionRepository.findById(questionPayLoad.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Question not found with id :" + questionPayLoad.getId()));
         Category category = categoryRepository.findById(questionPayLoad.getCategoryID())

@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="dfdf675a-b8fc-4767-bf41-6def5a323b4d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/BonusController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/BonusController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/CategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/PurchasedCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/PurchasedCategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/QuestionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/RoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/BonusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/BonusRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/PurchasedCategoriesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/PurchasedCategoriesRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/Bonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/service/JwtUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/JwtUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controller/BonusController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/BonusController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/validator/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/validator/UserValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/config/SecurityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/CategoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controller/QuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/QuestionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/RoleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/repository/BonusRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/repository/BonusRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/repository/CategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/repository/CategoryRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/repository/RoleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/repository/RoleRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/service/UserServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,18 +87,19 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Практика1/decimal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Unkilling33\Downloads\rest (1)\RESCourse\src\main\resources" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Курсач\RESCourse\MobileApp\src\main\resources" />
       <recent name="C:\Users\Unkilling33\Downloads\rest (1)\RESCourse\src\main\java\com" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Unkilling33\Downloads\rest (1)\RESCourse\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -155,11 +153,6 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -282,6 +275,19 @@
       <workItem from="1606310888404" duration="1822000" />
       <workItem from="1606312727932" duration="1790000" />
       <workItem from="1606314536841" duration="297000" />
+      <workItem from="1606315365777" duration="71000" />
+      <workItem from="1606368682672" duration="35000" />
+      <workItem from="1606385894572" duration="1704000" />
+      <workItem from="1606387693570" duration="480000" />
+      <workItem from="1606388275254" duration="8000" />
+      <workItem from="1606388325987" duration="1150000" />
+      <workItem from="1606755995156" duration="530000" />
+      <workItem from="1606894609298" duration="756000" />
+      <workItem from="1606903620165" duration="653000" />
+      <workItem from="1606919619864" duration="2659000" />
+      <workItem from="1606927504108" duration="3671000" />
+      <workItem from="1606979650987" duration="239000" />
+      <workItem from="1606995212337" duration="196000" />
     </task>
     <task id="LOCAL-00001" summary="Purchased Categories">
       <created>1604303158473</created>
@@ -318,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606206602490</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Up-to-date">
+      <created>1606315421377</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606315421377</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,46 +381,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1170" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603804688478" />
-    <state x="585" y="113" key="CommitChangelistDialog2" timestamp="1606206601653">
+    <state x="707" y="366" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606995291106">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606206601653" />
-    <state x="1220" y="274" key="FileChooserDialogImpl" timestamp="1606309632960">
+    <state x="707" y="366" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1606995291106" />
+    <state x="585" y="113" key="CommitChangelistDialog2" timestamp="1606315420111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1220" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606309632960" />
-    <state width="742" height="2" key="GridCell.Tab.0.bottom" timestamp="1606314833159">
+    <state x="585" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606315420111" />
+    <state x="1220" y="274" key="FileChooserDialogImpl" timestamp="1606995406959">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
-    <state width="742" height="2" key="GridCell.Tab.0.center" timestamp="1606314833159">
+    <state x="1220" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606995406959" />
+    <state width="1574" height="223" key="GridCell.Tab.0.bottom" timestamp="1606931751033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
-    <state width="742" height="2" key="GridCell.Tab.0.left" timestamp="1606314833159">
+    <state width="1574" height="223" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
+    <state width="1574" height="223" key="GridCell.Tab.0.center" timestamp="1606931751033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
-    <state width="742" height="2" key="GridCell.Tab.0.right" timestamp="1606314833159">
+    <state width="1574" height="223" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
+    <state width="1574" height="223" key="GridCell.Tab.0.left" timestamp="1606931751033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
-    <state width="742" height="2" key="GridCell.Tab.1.bottom" timestamp="1606314833159">
+    <state width="1574" height="223" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
+    <state width="1574" height="223" key="GridCell.Tab.0.right" timestamp="1606931751033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
-    <state width="742" height="2" key="GridCell.Tab.1.center" timestamp="1606314833159">
+    <state width="1574" height="223" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
+    <state width="1574" height="223" key="GridCell.Tab.1.bottom" timestamp="1606931751033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
-    <state width="742" height="2" key="GridCell.Tab.1.left" timestamp="1606314833159">
+    <state width="1574" height="223" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
+    <state width="1574" height="223" key="GridCell.Tab.1.center" timestamp="1606931751033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
-    <state width="742" height="2" key="GridCell.Tab.1.right" timestamp="1606314833159">
+    <state width="1574" height="223" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
+    <state width="1574" height="223" key="GridCell.Tab.1.left" timestamp="1606931751033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="742" height="2" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606314833159" />
+    <state width="1574" height="223" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
+    <state width="1574" height="223" key="GridCell.Tab.1.right" timestamp="1606931751033">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1574" height="223" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606931751033" />
     <state width="1292" height="2" key="GridCell.Tab.2.bottom" timestamp="1605952520221">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -432,10 +449,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="200" height="441" key="SqlResolveConfigurable/0.0.1920.1040@0.0.1920.1040" timestamp="1603871537557" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1606206609574">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1606315426939">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606206609574" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606315426939" />
     <state x="1156" y="160" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603871055500">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

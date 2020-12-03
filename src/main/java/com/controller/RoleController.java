@@ -33,14 +33,14 @@ public class RoleController {
 
 
     @PostMapping
-    public ResponseEntity<?> createRole(@RequestBody Role role){
+    public ResponseEntity<?> createRole(@RequestBody Role role) {
         Role newRole = new Role(role.getTitle());
         this.roleRepository.save(newRole);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public ResponseEntity<?> updateRole(@RequestBody Role role){
+    public ResponseEntity<?> updateRole(@RequestBody Role role) {
         Role existingRole = this.roleRepository.findById(role.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
         existingRole.setTitle(role.getTitle());
