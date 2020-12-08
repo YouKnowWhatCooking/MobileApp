@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="users")
-public class User implements UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,10 +51,6 @@ public class User implements UserDetails {
         this.bonus = bonus;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRole();
-    }
 
     public int getId() {
         return id;
@@ -66,26 +62,6 @@ public class User implements UserDetails {
 
     public String getUsername() {
         return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
     }
 
     public void setUsername(String username) {

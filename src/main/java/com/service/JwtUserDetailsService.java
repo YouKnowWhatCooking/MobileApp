@@ -17,6 +17,6 @@ public class JwtUserDetailsService implements org.springframework.security.core.
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(login)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getAuthorities());
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getRole());
     }
 }

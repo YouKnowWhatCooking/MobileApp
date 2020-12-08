@@ -15,6 +15,9 @@ public class PurchasedCategory {
     @ManyToOne
     private Category category;
 
+    @Column(name = "purchase_Date")
+    private Long purchaseDate;
+
     public PurchasedCategory() {
     }
 
@@ -40,5 +43,13 @@ public class PurchasedCategory {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Long getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Long purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 }

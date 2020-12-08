@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface PurchasedCategoriesRepository extends JpaRepository<PurchasedCategory, Integer> {
     Optional<PurchasedCategory> findById(int id);
-    List<PurchasedCategory> findByUser(User user);
+    List<PurchasedCategory> findAllByUser(User user);
+    List<PurchasedCategory> findAllByPurchaseDateBetween(long date1, long date2);
 }

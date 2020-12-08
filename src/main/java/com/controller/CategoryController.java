@@ -34,6 +34,7 @@ public class CategoryController {
     private RoleRepository roleRepository;
 
 
+    //Для админа
     @GetMapping("/admin")
     public ResponseEntity<?> getAllCategories() {
         List<Category> categoryList = categoryRepository.findAll();
@@ -46,7 +47,7 @@ public class CategoryController {
     public ResponseEntity<?> getPurchasedCategories(HttpServletRequest request) {
         User user = userRepository.findByUsername(request.getRemoteUser())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        List<PurchasedCategory> purchasedCategoryList = purchasedCategoriesRepository.findByUser(user);
+        List<PurchasedCategory> purchasedCategoryList = purchasedCategoriesRepository.findAllByUser(user);
         List<Category> categoryList = new ArrayList<>();
         for (PurchasedCategory purchasedCategory : purchasedCategoryList) {
             categoryList.add(purchasedCategory.getCategory());
@@ -59,7 +60,7 @@ public class CategoryController {
     public ResponseEntity<?> getUnpurchased(HttpServletRequest request) {
         User user = userRepository.findByUsername(request.getRemoteUser())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        List<PurchasedCategory> purchasedCategoryList = purchasedCategoriesRepository.findByUser(user);
+        List<PurchasedCategory> purchasedCategoryList = purchasedCategoriesRepository.findAllByUser(user);
         List<Category> categoryList = categoryRepository.findAll();
         List<Category> resultList = new ArrayList<>();
         List<Category> categoryList1 = new ArrayList<>();
@@ -75,7 +76,7 @@ public class CategoryController {
         return ResponseEntity.ok(resultList);
     }
 
-    //Для бесплатных
+    //Все бесплатные
     @GetMapping("/free")
     public ResponseEntity<?> getFreeCategories() {
         List<Category> categoryList = categoryRepository.findAll();
@@ -97,7 +98,7 @@ public class CategoryController {
     }
 
 
-    //Для неавторизованного пользователя
+    //Все, кроме авторских (для неавторизованного)
     @GetMapping
     public ResponseEntity<?> getCategoriesForUn() {
         List<Category> categoryList = categoryRepository.findAll();
