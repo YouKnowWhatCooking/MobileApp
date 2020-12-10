@@ -83,14 +83,11 @@ public class CategoryController {
         List<Category> resultList = new ArrayList<>();
         Role role2 = roleRepository.findById(2)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
-        Role role1 = roleRepository.findById(1)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
         Set<Role> roles = new HashSet<>();
-        roles.add(role1);
-        roles.add(role2);
+          roles.add(role2);
 
         for (Category category : categoryList) {
-            if (category.getUser().getRole().equals(roles) && !category.isPurchaseRequirment()) {
+            if (category.getUser().getRole().containsAll(roles) && !category.isPurchaseRequirment()) {
                 resultList.add(category);
             }
         }
@@ -105,13 +102,10 @@ public class CategoryController {
         List<Category> resultList = new ArrayList<>();
         Role role2 = roleRepository.findById(2)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
-        Role role1 = roleRepository.findById(1)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
         Set<Role> roles = new HashSet<>();
-        roles.add(role1);
         roles.add(role2);
         for (Category category : categoryList) {
-            if (category.getUser().getRole().equals(roles)) {
+            if (category.getUser().getRole().containsAll(roles)) {
                 resultList.add(category);
             }
         }
