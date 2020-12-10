@@ -1,13 +1,17 @@
 package com.controller;
 
 import com.entity.Role;
+import com.entity.User;
 import com.exception.ResourceNotFoundException;
 import com.repository.RoleRepository;
+import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/roles")
@@ -15,11 +19,29 @@ public class RoleController {
 
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public ResponseEntity<?> getAllRoles() {
         List<Role> roleList = roleRepository.findAll();
         return ResponseEntity.ok(roleList);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<?> getUserRoles(HttpServletRequest request) {
+        User user = userRepository.findByUsername(request.getRemoteUser())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Role roleUser = roleRepository.findById(2)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+        Role roleAdmin = roleRepository.findById(2)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+
+        Set<Role> roleList = user.getRole();
+        if(roleList.contains(roleAdmin)){
+            return ResponseEntity.ok(roleAdmin);
+        } else return ResponseEntity.ok(roleUser);
+
     }
 
 
