@@ -94,6 +94,24 @@ public class CategoryController {
         return ResponseEntity.ok(resultList);
     }
 
+    //Все платные
+    @GetMapping("/paid")
+    public ResponseEntity<?> getPaidCategories() {
+        List<Category> categoryList = categoryRepository.findAll();
+        List<Category> resultList = new ArrayList<>();
+        Role role2 = roleRepository.findById(2)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+        Set<Role> roles = new HashSet<>();
+        roles.add(role2);
+
+        for (Category category : categoryList) {
+            if (category.getUser().getRole().containsAll(roles) && category.isPurchaseRequirment()) {
+                resultList.add(category);
+            }
+        }
+        return ResponseEntity.ok(resultList);
+    }
+
 
     //Все, кроме авторских (для неавторизованного)
     @GetMapping
