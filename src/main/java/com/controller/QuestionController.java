@@ -32,14 +32,14 @@ public class QuestionController {
     }
 
 
-    @GetMapping("/{id}/{count}")
-    public ResponseEntity<?> getQuestionByCategory(@PathVariable("id") int ID, @PathVariable("count") int count) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getQuestionByCategory(@PathVariable("id") int ID) {
         Random random = new Random();
         List<Question> randomQuestions = new ArrayList<>();
         Category category = categoryRepository.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         List<Question> list = questionRepository.findByCategory(category);
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             int randomIndex = random.nextInt(list.size());
             randomQuestions.add(list.get(randomIndex));
             list.remove(randomIndex);
