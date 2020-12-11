@@ -39,7 +39,8 @@ public class QuestionController {
         Category category = categoryRepository.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         List<Question> list = questionRepository.findByCategory(category);
-        for (int i = 0; i < list.size(); i++) {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
             int randomIndex = random.nextInt(list.size());
             randomQuestions.add(list.get(randomIndex));
             list.remove(randomIndex);
