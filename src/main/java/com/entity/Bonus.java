@@ -16,8 +16,6 @@ public class Bonus {
     private int id;
 
     @Column(name = "bonus_value")
-    @NotNull(message = "bonusValue cannot be null")
-    @Pattern(regexp = "\\D", message = "Value must be a number")
     private int bonusValue;
 
     public Bonus() {

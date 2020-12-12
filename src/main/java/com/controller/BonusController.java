@@ -44,35 +44,35 @@ public class BonusController {
     public ResponseEntity<Response> gainBonus(HttpServletRequest request) {
         User user = userRepository.findByUsername(request.getRemoteUser())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        long lastLogin = user.getLastBonusGain();
+        long lastGain = user.getLastBonusGain();
         long currentDate = System.currentTimeMillis();
-        if ((currentDate - lastLogin) > 86400000) {
-            user.setLastBonusGain(lastLogin);
+        if ((currentDate - lastGain) > 86400000 * 2) {
+            user.setLastBonusGain(lastGain);
             Bonus foundBonus = bonusRepository.findById(user.getBonus().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
             int gainingBonus = foundBonus.getBonusValue();
             user.setBalance(user.getBalance() + foundBonus.getBonusValue());
-            Bonus nextBonus = bonusRepository.findById((user.getBonus().getId() + 1) % 7)
+            Bonus nextBonus = bonusRepository.findById(1)
                     .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
             user.setBonus(nextBonus);
             user.setLastBonusGain(System.currentTimeMillis());
             this.userRepository.save(user);
             Response response = new Response("Вам зачислен бонус - " + gainingBonus + " монет");
             return ResponseEntity.ok(response);
-        } else if ((currentDate - lastLogin) > 86400000 * 2) {
-            user.setLastBonusGain(lastLogin);
+        } else if ((currentDate - lastGain) > 86400000) {
+            user.setLastBonusGain(lastGain);
             Bonus foundBonus = bonusRepository.findById(user.getBonus().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
             int gainingBonus = foundBonus.getBonusValue();
             user.setBalance(user.getBalance() + foundBonus.getBonusValue());
-            Bonus nextBonus = bonusRepository.findById((user.getBonus().getId() + 1) % 7)
+            Bonus nextBonus = bonusRepository.findById((user.getBonus().getId() % 7) + 1)
                     .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
             user.setBonus(nextBonus);
             user.setLastBonusGain(System.currentTimeMillis());
             this.userRepository.save(user);
             Response response = new Response("Вам зачислен бонус - " + gainingBonus + " монет");
             return ResponseEntity.ok(response);
-        } else {
+        }  else {
             Response response = new Response("No bonus yet");
             return ResponseEntity.ok(response);
         }

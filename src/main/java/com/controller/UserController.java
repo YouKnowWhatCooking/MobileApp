@@ -55,7 +55,7 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
 
-       Bonus bonus = bonusRepository.findById(2)
+       Bonus bonus = bonusRepository.findById(1)
                 .orElseThrow(() -> new ResourceNotFoundException("Bonus not found"));
         User user = new User(userPayLoad.getUsername(),
                 userPayLoad.getPassword(),
