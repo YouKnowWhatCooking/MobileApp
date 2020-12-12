@@ -62,9 +62,9 @@ public class JwtAuthenticationController {
         roles.add(role2);
         if (user.getRole().containsAll(roles)) {
             isAdmin = true;
-            return ResponseEntity.ok(new JwtResponse(token, isAdmin));
+            return ResponseEntity.ok(new JwtResponse(token, isAdmin, user.getName()));
         }
-        return ResponseEntity.ok(new JwtResponse(token, isAdmin));
+        return ResponseEntity.ok(new JwtResponse(token, isAdmin, user.getName()));
     }
 
     private void authenticate(String username, String password) throws Exception {
