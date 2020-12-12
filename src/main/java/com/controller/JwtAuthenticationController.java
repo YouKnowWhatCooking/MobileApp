@@ -1,8 +1,13 @@
 package com.controller;
 
 import com.config.JwtTokenUtil;
+import com.entity.Role;
+import com.entity.User;
+import com.exception.ResourceNotFoundException;
 import com.payload.JwtRequest;
 import com.payload.JwtResponse;
+import com.repository.RoleRepository;
+import com.repository.UserRepository;
 import com.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -26,6 +34,11 @@ public class JwtAuthenticationController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private JwtUserDetailsService userDetailsService;
@@ -39,8 +52,19 @@ public class JwtAuthenticationController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
+        boolean isAdmin = false;
+        User user = userRepository.findByUsername(authenticationRequest.getUsername())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        Role role2 = roleRepository.findById(2)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+        Set<Role> roles = new HashSet<>();
+        roles.add(role2);
+        if (user.getRole().containsAll(roles)) {
+            isAdmin = true;
+            return ResponseEntity.ok(new JwtResponse(token, isAdmin));
+        }
+        return ResponseEntity.ok(new JwtResponse(token, isAdmin));
     }
 
     private void authenticate(String username, String password) throws Exception {
