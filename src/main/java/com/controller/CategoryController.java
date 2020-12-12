@@ -42,6 +42,16 @@ public class CategoryController {
     }
 
 
+
+    //Для своих
+    @GetMapping("/custom")
+    public ResponseEntity<?> getUserCategories(HttpServletRequest request) {
+        User user = userRepository.findByUsername(request.getRemoteUser())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        List<Category> categoryList = categoryRepository.findAllByUser(user);
+        return ResponseEntity.ok(categoryList);
+    }
+
     //Для купленных категорий
     @GetMapping("/user")
     public ResponseEntity<?> getPurchasedCategories(HttpServletRequest request) {
