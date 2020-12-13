@@ -4,13 +4,13 @@ public class CategoryPayLoad {
     private int id;
     private String title;
     private int price;
-    private boolean purchaseRequirement;
+    private boolean purchaseRequirment;
 
-    public CategoryPayLoad(int id, String title, int price, boolean purchaseRequirement) {
+    public CategoryPayLoad(int id, String title, int price, boolean purchaseRequirment) {
         this.id = id;
         this.title = title;
         this.price = price;
-        this.purchaseRequirement = purchaseRequirement;
+        this.purchaseRequirment = purchaseRequirment;
     }
 
     public String getTitle() {
@@ -31,11 +31,11 @@ public class CategoryPayLoad {
     }
 
     public boolean isPurchaseRequirement() {
-        return purchaseRequirement;
+        return purchaseRequirment;
     }
 
     public void setPurchaseRequirement(boolean purchaseRequirement) {
-        this.purchaseRequirement = purchaseRequirement;
+        this.purchaseRequirment = purchaseRequirement;
     }
 
     public int getId() {
