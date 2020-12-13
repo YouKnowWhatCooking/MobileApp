@@ -52,7 +52,7 @@ public class UserController {
         userValidator.validate(userPayLoad, errors);
         if(errors.hasErrors()){
             System.out.println(errors);
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body("Пользователь с таким именем уже существует");
         }
 
        Bonus bonus = bonusRepository.findById(1)
@@ -64,7 +64,7 @@ public class UserController {
                 (long) 1,
                 bonus);
         userService.save(user);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("Вы были успешно зарегистрированы в системе");
     }
 
 

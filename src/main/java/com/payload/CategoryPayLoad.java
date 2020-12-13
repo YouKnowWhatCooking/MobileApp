@@ -34,8 +34,8 @@ public class CategoryPayLoad {
         return purchaseRequirment;
     }
 
-    public void setPurchaseRequirement(boolean purchaseRequirement) {
-        this.purchaseRequirment = purchaseRequirement;
+    public void setPurchaseRequirment(boolean purchaseRequirment) {
+        this.purchaseRequirment = purchaseRequirment;
     }
 
     public int getId() {
