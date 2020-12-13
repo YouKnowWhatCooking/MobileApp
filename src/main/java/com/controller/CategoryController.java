@@ -161,7 +161,7 @@ public class CategoryController {
     public ResponseEntity<?> createCategoryUser(@RequestBody CategoryPayLoad categoryPayLoad, HttpServletRequest request) {
         User user = userRepository.findByUsername(request.getRemoteUser())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        Category newCategory = new Category(categoryPayLoad.getTitle(), 0, categoryPayLoad.isPurchaseRequirement(), user);
+        Category newCategory = new Category(categoryPayLoad.getTitle(), 0, false, user);
         this.categoryRepository.save(newCategory);
         return ResponseEntity.ok().build();
     }
